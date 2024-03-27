@@ -31,7 +31,6 @@ def half_division(a, b, eps):
 
         x1 = (a + b - eps)/2
         x2 = (a + b + eps)/2
-        print('x1', x1, 'x2', x2)
         y1 = f(x1)
         y2 = f(x2)
 
@@ -39,7 +38,6 @@ def half_division(a, b, eps):
             a = x1
         else:
             b = x2
-        print('a', a, 'b', b)
 
     return interval_len(a, b)
 
@@ -70,8 +68,9 @@ def golden_section(a, b, eps):
 def chord(a, b, eps):
     while True:
         x = a - f_derivative(a)/(f_derivative(a) - f_derivative(b))*(a-b)
-        y = f_derivative(x)
 
+        y = f_derivative(x)
+        print(f_derivative(a), f_derivative(b), x, y, f_derivative(x))
         if y <= eps:
             return x
         else:
@@ -95,7 +94,7 @@ def newton(a, b, eps):
             x0 = x
 
 
-print(half_division(a, b, eps))
-print(golden_section(a, b, eps))
+# print(half_division(a, b, eps))
+# print(golden_section(a, b, eps))
 print(chord(a, b, eps))
-print(newton(a, b, eps))
+# print(newton(a, b, eps))
