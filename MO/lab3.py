@@ -1,18 +1,17 @@
 from math import e
 
-a, b, eps1, eps2, deltaX = 0.5, 1.5, 0.2, 0.5, 1
+a, b, eps1, eps2, deltaX = 1, 1.5, 0.0001, 0.01, 0.5
 
 
 # основная функция
 def f(x):
-    return 1/x + e**x
+    return 1/x + e**x if x != 0 else 100000
 
 
 # Шаг 1 - 5
 def initial_values(a):
     # Шаг 1
     x1 = a
-
     # Шаг 2
     x2 = x1 + deltaX
 
@@ -60,9 +59,18 @@ while True:
         print(xm, cnt)
         break
     else:
-        if x1 <= xm <= x3:
-            x3 = x2
-            x2 = xm
+        if (x1 <= xm <= x3) | (x1 >= xm >= x3):
+            x1, x2, x3, f1, f2, f3, x_min = initial_values(min(xm, x_min))
+            # f_min = min(f1, f3, fxm)
+            # x_min = [x1, x3, xm][[f1, f3, fxm].index(f_min)]
+            # x1 = x_min
+            # x2 = x1 + deltaX
+            # if f1 > f2:
+            #     x3 = x1 + 2 * deltaX
+            #     x_min = x1
+            # else:
+            #     x3 = x1 - deltaX
+            #     x_min = x3
         else:
             x1, x2, x3, f1, f2, f3, x_min = initial_values(xm)
             continue
