@@ -1,12 +1,14 @@
 from math import e
 
-a, b, eps1, eps2, deltaX = 1, 1.5, 0.0001, 0.01, 0.5
+a, b, eps1, eps2, deltaX = 1, 1.5, 0.000001, 0.0001, 0.1
 
 
 # основная функция
 def f(x):
-    return 1/x + e**x if x != 0 else 100000
+    return 1/x + e**x if x != 0 else 1000
 
+# def x_initialize(x_new, x_old):
+#     return x_new if x_new != 0 else x_old
 
 # Шаг 1 - 5
 def initial_values(a):
@@ -61,16 +63,17 @@ while True:
     else:
         if (x1 <= xm <= x3) | (x1 >= xm >= x3):
             x1, x2, x3, f1, f2, f3, x_min = initial_values(min(xm, x_min))
-            # f_min = min(f1, f3, fxm)
-            # x_min = [x1, x3, xm][[f1, f3, fxm].index(f_min)]
-            # x1 = x_min
-            # x2 = x1 + deltaX
+            # x1 = x_initialize(min(xm, x_min), x1)
+            # x2 = x_initialize(x1 + deltaX, x2)
+            # x3 = x_initialize(x1 - deltaX, x3)
+            # f1, f2 = f(x1), f(x2)
             # if f1 > f2:
             #     x3 = x1 + 2 * deltaX
             #     x_min = x1
             # else:
             #     x3 = x1 - deltaX
             #     x_min = x3
+            # f3 = f(x3)
         else:
             x1, x2, x3, f1, f2, f3, x_min = initial_values(xm)
             continue
