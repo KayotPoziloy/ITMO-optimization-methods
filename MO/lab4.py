@@ -1,12 +1,9 @@
-import math
-
-
 # Шаг 1 основная функция
 def f(x, y):
     return x**4 + y**4 - 4*x*y
 
 
-eps = 0.000001
+eps = 1e-6
 h = 0.1
 
 
