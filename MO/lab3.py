@@ -59,7 +59,7 @@ while True:
         print(xm, cnt)
         break
     else:
-        if (x1 <= xm <= x3) | (x1 >= xm >= x3):
+        if (min(x1, x2, x3) <= xm <= max(x1, x2, x3)) | (min(x1, x2, x3) >= xm >= max(x1, x2, x3)):
             x1 = min(x1, xm, x3)
             x3 = max(x3, xm, x1)
             x2 = xm
